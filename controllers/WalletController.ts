@@ -54,17 +54,20 @@ const updateWallet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { wallet_address, amount } = req.body;
-      if (!wallet_address) {
-        next(ApiError.badRequest("wallet address is required"));
+      if (!wallet_address || !amount) {
+        next(ApiError.badRequest("wallet address and amount are required"));
       }
       const wallet = await Wallet.findOneAndUpdate(
         {
-          wallet_address: wallet_address
+          wallet_address: wallet_address,
         },
         {
           $inc: {
             balance: amount,
           },
+        },
+        {
+          new: true,
         }
       );
 
