@@ -59,7 +59,7 @@ const updateWallet = asyncHandler(
       }
       const wallet = await Wallet.findOneAndUpdate(
         {
-          wallet_address: req.params.wallet_address,
+          wallet_address: wallet_address
         },
         {
           $inc: {
