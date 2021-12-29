@@ -11,6 +11,6 @@ const WalletSchema = new mongoose.Schema({
     }
 });
 
-const Section = mongoose.model("WalletSchema", WalletSchema);
+const Section = mongoose.model("Wallet", WalletSchema);
 
 export default Section;
