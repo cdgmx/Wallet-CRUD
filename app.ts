@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import WalletRoutes from "./routes/WalletRoutes";
+import Web3Middleware from "./middlewares/Web3MiddleWare";
 const connectDB = require("./config/db");
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,6 +9,7 @@ app.use(express.json());
 dotenv.config();
 connectDB();
 
+app.use(Web3Middleware)
 app.use("/api/wallet", WalletRoutes);
 app.get("/", (req, res: Response) => {
   res.send("Hello World!");
