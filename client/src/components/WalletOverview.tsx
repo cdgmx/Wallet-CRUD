@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from '../store'
 import { getWallet } from '../actions/walletActions';
+import Web3 from "web3";
+var web3 = new Web3(Web3.givenProvider || "http://localhost:8000");
 const WalletOverview = () => {
     const { wallet, loading, error } = useSelector((state: RootState) => state.wallet);
     const dispatch = useDispatch()
@@ -10,19 +12,27 @@ const WalletOverview = () => {
     const [balance, setBalance] = useState(0);
     const [errorMessage, setErrorMessage] = useState('');
     const [isError, setIsError] = useState(false);
+
     const submitKeys = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        dispatch(getWallet(walletAddress, walletPrivateKey));
+        try{
+            const signedData = web3.eth.accounts.sign('test', walletPrivateKey);
+            dispatch(getWallet(walletAddress, walletPrivateKey,signedData));
+        }
+        catch(error){
+            setIsError(true);
+            setErrorMessage('Could not sign data with private key');
+        }
     }
 
     useEffect(() => {
-        if (wallet.wallet_address) {
-            setBalance(wallet.balance);
+        if (wallet['wallet_address']) {
+            setBalance(wallet['balance']);
         }
     }, [wallet, loading]);
     useEffect(() => {
-        if (error.message) {
-            setErrorMessage(error.message);
+        if (error['message']) {
+            setErrorMessage(error['message']);
             setIsError(true);
         }
     }, [error, loading]);
