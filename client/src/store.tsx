@@ -1,9 +1,12 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import { getWalletReducer } from './reducers/walletReducers';
+import { getWalletReducer, updateWalletReducer, createWalletReducer, deleteWalletReducer } from './reducers/walletReducers';
 
 const reducer = combineReducers({
     wallet: getWalletReducer,
+    updateWallet: updateWalletReducer,
+    newWallet: createWalletReducer,
+    removeStatus: deleteWalletReducer,
 });
 
 const middleware = [thunk];

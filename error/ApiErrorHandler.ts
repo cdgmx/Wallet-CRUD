@@ -4,7 +4,7 @@ import ApiError from './ApiError';
 function apiErrorHandler(err:any, req: Request, res:Response, next:NextFunction) {
 
   if (err instanceof ApiError) {
-      console.log(err);
+    console.log(err);
     res.status(err.code)
     res.json({
       message: err.message
@@ -12,7 +12,9 @@ function apiErrorHandler(err:any, req: Request, res:Response, next:NextFunction)
     return;
   }
 
-  res.status(500).json('something went wrong');
+  res.status(500).json({
+    message: 'Something went wrong'
+  });
   return;
 }
 

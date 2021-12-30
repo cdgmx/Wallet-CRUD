@@ -14,7 +14,7 @@ const createWallet = asyncHandler(
       const savedWallet = await wallet.save();
 
       savedWallet
-        ? res.status(201).json({ data: savedWallet })
+        ? res.status(201).json(createdWallet)
         : next(ApiError.internal("unable to save wallet"));
     } catch (err: any) {
       next(ApiError.internal("unable to create wallet"));
@@ -25,17 +25,23 @@ const createWallet = asyncHandler(
 const readWallet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { wallet_address } = req.body;
-      if (!wallet_address) {
-        next(ApiError.badRequest("wallet address is required"));
+      const { private_key, wallet_address, signedData} :any = req.query;
+      if (!wallet_address || !private_key) {
+        next(
+          ApiError.badRequest(" wallet_address and private_key are required")
+        );
       }
-      
+      // const web3 = req.body.web3;
+      // const publicAddress = web3.eth.accounts.recover(JSON.parse(signedData));
+      // if (publicAddress !== wallet_address) {
+      //   next(ApiError.badRequest("you are not the owner of this wallet"));
+      // }
       const wallet = await Wallet.findOne({
         wallet_address: wallet_address,
       });
 
       wallet
-        ? res.status(200).json({ data: wallet })
+        ? res.status(200).json(wallet)
         : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to read wallet"));
@@ -46,7 +52,8 @@ const readWallet = asyncHandler(
 const updateWallet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { wallet_address, amount } = req.body;
+      const { amount } = req.body;
+      const { wallet_address } = req.query;
       if (!wallet_address || !amount) {
         next(ApiError.badRequest("wallet address and amount are required"));
       }
@@ -65,9 +72,7 @@ const updateWallet = asyncHandler(
       );
 
       wallet
-        ? res.status(200).json({
-            data: wallet,
-          })
+        ? res.status(200).json(wallet)
         : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to update wallet"));
@@ -78,7 +83,7 @@ const updateWallet = asyncHandler(
 const deleteWallet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { wallet_address } = req.body;
+      const { wallet_address } = req.query;
       if (!wallet_address) {
         next(ApiError.badRequest("wallet address is required"));
       }
@@ -87,7 +92,7 @@ const deleteWallet = asyncHandler(
       });
 
       wallet
-        ? res.status(200).json({ data: wallet })
+        ? res.status(200).json()
         : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to delete wallet"));
