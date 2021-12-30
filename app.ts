@@ -12,7 +12,7 @@ connectDB();
 
 app.use(Web3Middleware)
 app.use("/api/wallet", WalletRoutes);
-app.get("/", (req, res: Response) => {
+app.get("/", (req:Request, res: Response) => {
   res.send("Hello World!");
 });
 app.use(ApiErrorHandler);

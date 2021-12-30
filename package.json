@@ -2,7 +2,7 @@
   "name": "Wallet-CRUD",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "dependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.5",
