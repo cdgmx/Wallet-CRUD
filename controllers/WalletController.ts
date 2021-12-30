@@ -13,13 +13,9 @@ const createWallet = asyncHandler(
       });
       const savedWallet = await wallet.save();
 
-      if (!savedWallet) {
-        next(ApiError.internal("unable to save wallet"));
-      }
-
-      res.status(201).json({
-        data: createdWallet,
-      });
+      savedWallet
+        ? res.status(201).json({ data: savedWallet })
+        : next(ApiError.internal("unable to save wallet"));
     } catch (err: any) {
       next(ApiError.internal("unable to create wallet"));
     }
@@ -33,17 +29,14 @@ const readWallet = asyncHandler(
       if (!wallet_address) {
         next(ApiError.badRequest("wallet address is required"));
       }
+      
       const wallet = await Wallet.findOne({
         wallet_address: wallet_address,
       });
 
-      if (!wallet) {
-        next(ApiError.notFound("wallet not found"));
-      }
-
-      res.status(200).json({
-        data: wallet,
-      });
+      wallet
+        ? res.status(200).json({ data: wallet })
+        : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to read wallet"));
     }
@@ -71,13 +64,11 @@ const updateWallet = asyncHandler(
         }
       );
 
-      if (!wallet) {
-        next(ApiError.notFound("wallet not found"));
-      }
-
-      res.status(200).json({
-        data: wallet,
-      });
+      wallet
+        ? res.status(200).json({
+            data: wallet,
+          })
+        : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to update wallet"));
     }
@@ -95,13 +86,9 @@ const deleteWallet = asyncHandler(
         wallet_address: wallet_address,
       });
 
-      if (!wallet) {
-        next(ApiError.notFound("wallet not found"));
-      }
-
-      res.status(200).json({
-        data: wallet,
-      });
+      wallet
+        ? res.status(200).json({ data: wallet })
+        : next(ApiError.notFound("wallet not found"));
     } catch (err: any) {
       next(ApiError.internal("unable to delete wallet"));
     }
