@@ -5,7 +5,10 @@ function apiErrorHandler(err:any, req: Request, res:Response, next:NextFunction)
 
   if (err instanceof ApiError) {
       console.log(err);
-    res.status(err.code).json(err.message);
+    res.status(err.code)
+    res.json({
+      message: err.message
+    });
     return;
   }
 
