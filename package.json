@@ -19,11 +19,10 @@
   "devDependencies": {},
   "scripts": {
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "start": "nodemon app.ts",
+    "start": "node app.ts",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm start\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "build": "tsc"
   },
   "repository": {
