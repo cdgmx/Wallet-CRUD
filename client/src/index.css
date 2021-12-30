@@ -32,3 +32,18 @@ code {
   background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
 }
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.input-data{
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 1px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
