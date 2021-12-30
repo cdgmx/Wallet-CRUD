@@ -17,6 +17,7 @@ app.get("/", (req:Request, res: Response) => {
   res.send("Hello World!");
 });
 
+app.use(ApiErrorHandler);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
 
@@ -25,7 +26,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.use(ApiErrorHandler);
 const server = app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening on port ${PORT}`);
 });
