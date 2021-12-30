@@ -16,6 +16,6 @@ app.get("/", (req, res: Response) => {
   res.send("Hello World!");
 });
 app.use(ApiErrorHandler);
-const server = app.listen(process.env.PORT || 3000, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   console.log(`Listening on port ${PORT}`);
 });
