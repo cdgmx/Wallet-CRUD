@@ -15,7 +15,7 @@ import {
     WALLET_UPDATE_FAILURE,
 } from "../constants/walletConstants";
 
-export const getWallet = (wallet_address: any, private_key: any,signedData:any) => {
+export const getWallet = (wallet_address: any,signedData:any) => {
     return async (dispatch: (arg0: { type: string; payload?: any; }) => void) => {
         dispatch({
             type: WALLET_GET_REQUEST,
@@ -25,7 +25,6 @@ export const getWallet = (wallet_address: any, private_key: any,signedData:any) 
             const {data} = await axios.get(`/api/wallet/read`, {
                 params: {
                     wallet_address: wallet_address,
-                    private_key: private_key,
                     signedData:signedData,
                 },
                 headers: {
