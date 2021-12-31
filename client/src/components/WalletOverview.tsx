@@ -19,7 +19,7 @@ const WalletOverview = () => {
         e.preventDefault();
         try {
             const signedData = web3.eth.accounts.sign('test', walletPrivateKey);
-            dispatch(getWallet(walletAddress, walletPrivateKey, signedData));
+            dispatch(getWallet(walletAddress, signedData));
         }
         catch (error) {
             setIsError(true);
