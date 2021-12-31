@@ -1,37 +1,18 @@
 <h1 align="center">
-  <img src="./src/assets/stack.svg" width="55" alt="stacklogo" />
-
- TechStack</h1>
+ Wallet App</h1>
 
 <div align="center"> <img height="55" src="https://expressjs.com/images/express-facebook-share.png"/> <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/bootstrap.svg"/> <img width="55" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"/> <img width="55" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"/><img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/javascript.svg"/> <img width="55" src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png"/> <img width="55" src="https://i.ibb.co/grwVG9t/web3js-removebg-preview.png"/> <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/typescript-icon.svg"/> </div>
 
 <h2 align="center">
-  <a href="https://techstack-logos.web.app/">[LIVE APP]</a>
+  <a href="https://crud-backend-eth.herokuapp.com/create">[LIVE APP]</a>
 </h2>
 
-## ⚡️BreakDown
-TechStack is an easy way to visualize your tech stack by simply pasting your <code>package.json</code> file and having it generate a beautiful bar of tech logos from your dependancies which you can then use in your <code>README.md</code> file. Logos provided by <a href="https://github.com/gilbarbara/logos">Logos</a>.
-
 ## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[1] Run `npm run i` install dependencies
+[2] Run `cd client` 
+[3] Run `npm run i` install dependencies
+[4] Run `cd ..` 
+[5] Run `npm run dev` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/13654036-4e5e8f20-ab62-4102-a5ce-9722b06a65d5?action=collection%2Ffork&collection-url=entityId%3D13654036-4e5e8f20-ab62-4102-a5ce-9722b06a65d5%26entityType%3Dcollection%26workspaceId%3D8720fdec-f85f-40b9-9f43-4af279e13038)
