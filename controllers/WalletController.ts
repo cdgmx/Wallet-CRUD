@@ -25,24 +25,24 @@ const createWallet = asyncHandler(
 const readWallet = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { private_key, wallet_address, signedData} :any = req.query;
-      if (!wallet_address || !private_key) {
+      console.log("readWallet");
+      const { wallet_address} :any = req.query;
+      if (!wallet_address) {
         next(
-          ApiError.badRequest(" wallet_address and private_key are required")
+          ApiError.badRequest("wallet_address and private_key are required")
         );
       }
-      // const web3 = req.body.web3;
-      // const publicAddress = web3.eth.accounts.recover(JSON.parse(signedData));
-      // if (publicAddress !== wallet_address) {
-      //   next(ApiError.badRequest("you are not the owner of this wallet"));
-      // }
       const wallet = await Wallet.findOne({
         wallet_address: wallet_address,
       });
+      if(!wallet){
+        next(ApiError.notFound("wallet not found"));
+      }
+      else{
+        res.status(200).json(wallet);
+      }
 
-      wallet
-        ? res.status(200).json(wallet)
-        : next(ApiError.notFound("wallet not found"));
+      
     } catch (err: any) {
       next(ApiError.internal("unable to read wallet"));
     }
