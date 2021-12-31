@@ -22,8 +22,9 @@
   "scripts": {
     "heroku-postbuild": "npm install && cd client && npm install && npm run build",
     "start": "ts-node app.ts",
+    "backend": "nodemon app.ts",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm start\" \"npm run client\"",
+    "dev": "concurrently \"npm backend\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client-install": "npm install --prefix client",
     "build": "tsc"
